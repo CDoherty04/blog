@@ -34,4 +34,21 @@ router.post("/posts", async function (req, res) {
     res.redirect("/posts")
 })
 
+router.get("/posts/:id", async function (req, res) {
+    const postId = req.params.id
+
+    const query = `SELECT posts.*, authors.name AS author_name FROM blog.posts 
+        INNER JOIN blog.authors ON blog.posts.author_id = blog.authors.id
+        `
+    const [posts] = await db.query(query)
+
+    for (const post of posts) {
+        if (postId == post.id) {
+            return res.render("post-detail", { post: post })
+        }
+    }
+
+    res.status(404).render("404")
+})
+
 module.exports = router
