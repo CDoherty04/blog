@@ -10,8 +10,15 @@
   <%- include('includes/header') %>
   <main id="all-posts">
     <h1>All Posts</h1>
-   
-  </main> 
+    <% if (!posts || posts.length === 0) { %>
+    <p>No posts found - Be the first!</p>
+    <a href="/new-post" class="btn">Create Post</a>
+    <% } else { %>
+    <ol id="posts-list">
+      <%- include("./includes/post-item", {posts: posts}) %>
+    </ol>
+    <% } %>
+  </main>
 </body>
 
 </html>
