@@ -12,11 +12,13 @@ router.get("/posts", async function (req, res) {
         INNER JOIN blog.authors ON blog.posts.author_id = blog.authors.id
         `
     const [posts] = await db.query(query)
+
     res.render("posts-list", { posts: posts })
 })
 
 router.get("/new-post", async function (req, res) {
     const [authors] = await db.query("SELECT * FROM authors")
+
     res.render("create-post", { authors: authors })
 })
 
@@ -28,6 +30,7 @@ router.post("/posts", async function (req, res) {
         req.body.author
     ]
     await db.query("INSERT INTO posts (title, summary, body, author_id) VALUES (?)", [data])
+
     res.redirect("/posts")
 })
 
