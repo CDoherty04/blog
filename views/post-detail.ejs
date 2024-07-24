@@ -23,6 +23,7 @@
     <section>
       <p id="body"><%= post.body %></p>
     </section>
+    
     <section id="comments">
       <p>
         This post might have comments. You can load them if you want to view
@@ -30,6 +31,7 @@
       </p>
       <button id="comments-button" class="btn btn-alt" data-postid="<%= post._id %>">Load Comments</button>
     </section>
+
     <section id="comments-form">
       <h2>Leave a comment</h2>
       <form action="/posts/<%= post._id %>/comments" method="POST">
