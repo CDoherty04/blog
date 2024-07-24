@@ -11,11 +11,15 @@
   <main id="all-posts">
     <h1>All Posts</h1>
     <% if (!posts || posts.length === 0) { %>
-    <p>No posts found - Be the first!</p>
-    <a href="/new-post" class="btn">Create Post</a>
+    <p>No posts found - be the first!</p>
+    <a class="btn" href="/new-post">Create Post</a>
     <% } else { %>
     <ol id="posts-list">
-      <%- include("./includes/post-item", {posts: posts}) %>
+      <% for (const post of posts) { %>
+      <li>
+        <%- include("includes/post-item", { post: post }) %>
+      </li>
+      <% } %>
     </ol>
     <% } %>
   </main>
